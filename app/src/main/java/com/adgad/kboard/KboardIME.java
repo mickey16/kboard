@@ -78,7 +78,12 @@ public class KboardIME  extends InputMethodService
         mSoundOnClick = sharedPref.getBoolean("sound_on", false);
         mPassiveAggressive = sharedPref.getBoolean("passive_aggressive", false);
         mRows = Integer.parseInt(Objects.requireNonNull(sharedPref.getString("rows", "5")));
-        mColumns = Integer.parseInt(Objects.requireNonNull(sharedPref.getString("columns", "4")));
+        if (mRows == 4 || mRows == 5) {
+            mColumns = Integer.parseInt(Objects.requireNonNull(sharedPref.getString("columns", "4")));
+        }
+        else{
+            mColumns = 4;
+        }
 
         mKeysPerRow = (mRows == 1) ? 1 : mColumns;
         mKeysPerScreen = mRows * mKeysPerRow;
