@@ -701,6 +701,11 @@
         <item>"8"</item>
     </string-array>
 
+    <string-array name="columns">
+        <item>"3"</item>
+        <item>"4"</item>
+    </string-array>
+
     <string-array name="fontsizes">
         <item>"24"</item>
         <item>"28"</item>

@@ -56,6 +56,11 @@
             android:entries="@array/rows"
             android:entryValues="@array/rows"/>
         <ListPreference
+            android:key="columns"
+            android:title="Number of Columns"
+            android:entries="@array/columns"
+            android:entryValues="@array/columns"/>
+        <ListPreference
             android:key="fontsize"
             android:title="Font Size"
             android:entries="@array/fontsizes"

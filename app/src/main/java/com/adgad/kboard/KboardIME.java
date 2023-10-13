@@ -50,6 +50,7 @@ public class KboardIME  extends InputMethodService
     private int mScreen = 0;
     private int totalScreens = 0;
     private int mRows = 5;
+    private int mColumns = 4;
     private int mKeysPerScreen = 12;
     private int mKeysPerRow = 4;
 
@@ -77,7 +78,9 @@ public class KboardIME  extends InputMethodService
         mSoundOnClick = sharedPref.getBoolean("sound_on", false);
         mPassiveAggressive = sharedPref.getBoolean("passive_aggressive", false);
         mRows = Integer.parseInt(Objects.requireNonNull(sharedPref.getString("rows", "5")));
-        mKeysPerRow = (mRows == 1) ? 1 : 4;
+        mColumns = Integer.parseInt(Objects.requireNonNull(sharedPref.getString("columns", "4")));
+
+        mKeysPerRow = (mRows == 1) ? 1 : mColumns;
         mKeysPerScreen = mRows * mKeysPerRow;
         setKeys();
     }
@@ -104,9 +107,19 @@ public class KboardIME  extends InputMethodService
         } else if (mRows == 6) {
             keyboard = new KBoard(this, R.xml.six_rows);
         } else if (mRows == 5) {
-            keyboard = new KBoard(this, R.xml.five_rows);
+            if (mColumns == 3) {
+                keyboard = new KBoard(this, R.xml.five_rows_three_columns);
+            }
+            else{
+                keyboard = new KBoard(this, R.xml.five_rows);
+            }
         } else if (mRows == 4) {
-            keyboard = new KBoard(this, R.xml.four_rows);
+            if (mColumns == 3) {
+                keyboard = new KBoard(this, R.xml.four_rows_three_columns);
+            }
+            else{
+                keyboard = new KBoard(this, R.xml.four_rows);
+            }
         } else if (mRows == 1) {
             keyboard = new KBoard(this, R.xml.one_row);
         } else {
